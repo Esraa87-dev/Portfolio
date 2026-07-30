@@ -17,12 +17,95 @@
 </head>
 <body>
 
-  <!-- CUSTOM CURSOR -->
+  <!-- NEBULA BACKGROUND LAYERS -->
+  <div class="nebula-layer nebula-1" aria-hidden="true"></div>
+  <div class="nebula-layer nebula-2" aria-hidden="true"></div>
+  <div class="nebula-layer nebula-3" aria-hidden="true"></div>
+  <div class="galaxy-layer" aria-hidden="true"></div>
+
+  <!-- PLANET CURSOR -->
+  <div class="planet-cursor" id="planetCursor" aria-hidden="true">
+    <div class="planet-cursor-body"></div>
+    <div class="planet-cursor-orbit" id="planetOrbit"></div>
+    <div class="cursor-sparkles" id="cursorSparkles"></div>
+  </div>
   <div class="cursor-glow" id="cursorGlow"></div>
-  <div class="cursor-dot" id="cursorDot"></div>
 
   <!-- SHOOTING STAR CONTAINER -->
   <div class="shooting-stars" id="shootingStars"></div>
+
+  <!-- COSMIC RIPPLE CONTAINER -->
+  <div class="cosmic-ripple-container" id="cosmicRippleContainer"></div>
+
+  <!-- ROCKET NAVIGATION -->
+  <div class="nav-rocket" id="navRocket" aria-hidden="true">
+    <div class="rocket-body">
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
+        <path d="M12 0C12 0 4 10 4 18C4 24 8 28 12 32C16 28 20 24 20 18C20 10 12 0 12 0Z" fill="url(#rocketGrad)"/>
+        <circle cx="12" cy="18" r="3" fill="#0B1020" opacity="0.6"/>
+      </svg>
+      <svg width="0" height="0"><defs><linearGradient id="rocketGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D9FF"/></linearGradient></defs></svg>
+    </div>
+    <div class="rocket-exhaust" id="rocketExhaust"></div>
+  </div>
+
+  <!-- CONSTELLATION CANVAS -->
+  <canvas id="constellationCanvas" aria-hidden="true"></canvas>
+
+  <!-- GALAXY FOG -->
+  <div class="galaxy-fog" aria-hidden="true"></div>
+
+  <!-- BLACK HOLE -->
+  <div class="black-hole" aria-hidden="true">
+    <div class="black-hole-shadow"></div>
+    <div class="black-hole-disk"></div>
+    <div class="black-hole-core"></div>
+    <div class="black-hole-glow"></div>
+  </div>
+
+  <!-- FLOATING PLANETS -->
+  <div class="floating-planet planet-1" aria-hidden="true">
+    <div class="planet-ring"></div>
+  </div>
+  <div class="floating-planet planet-2" aria-hidden="true"></div>
+  <div class="floating-planet planet-3" aria-hidden="true">
+    <div class="planet-ring"></div>
+  </div>
+  <div class="floating-planet planet-4" aria-hidden="true"></div>
+  <div class="floating-planet planet-5" aria-hidden="true">
+    <div class="planet-ring"></div>
+  </div>
+
+  <!-- ASTEROIDS -->
+  <div class="asteroid asteroid-1" aria-hidden="true"></div>
+  <div class="asteroid asteroid-2" aria-hidden="true"></div>
+  <div class="asteroid asteroid-3" aria-hidden="true"></div>
+
+  <!-- SATELLITES -->
+  <div class="satellite satellite-1" aria-hidden="true">
+    <div class="satellite-body"></div>
+    <div class="satellite-panel"></div>
+  </div>
+
+  <!-- COMET CONTAINER -->
+  <div class="comet-container" id="cometContainer" aria-hidden="true"></div>
+
+  <!-- COSMIC LIGHTING OVERLAYS -->
+  <div class="cosmic-light light-top-left" aria-hidden="true"></div>
+  <div class="cosmic-light light-bottom-right" aria-hidden="true"></div>
+  <div class="cosmic-light light-center" aria-hidden="true"></div>
+
+  <!-- BACK TO TOP ROCKET -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <div class="btt-rocket">
+      <svg width="20" height="26" viewBox="0 0 24 32" fill="none">
+        <path d="M12 0C12 0 4 10 4 18C4 24 8 28 12 32C16 28 20 24 20 18C20 10 12 0 12 0Z" fill="url(#bttRocketGrad)"/>
+        <circle cx="12" cy="18" r="3" fill="#0B1020" opacity="0.6"/>
+      </svg>
+      <svg width="0" height="0"><defs><linearGradient id="bttRocketGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D9FF"/></linearGradient></defs></svg>
+    </div>
+    <div class="btt-exhaust" id="bttExhaust"></div>
+  </button>
 
   <!-- FLOATING PARTICLES BACKGROUND -->
   <canvas id="particleCanvas"></canvas>
@@ -94,9 +177,12 @@
           </div>
         </div>
         <div class="hero-image-wrapper reveal-scale">
-          <div class="hero-image-frame">
+          <div class="hero-image-frame" id="heroFrame">
+            <div class="hero-sun-glow" aria-hidden="true"></div>
             <div class="hero-orbit">
               <div class="orbit-ring"></div>
+              <div class="orbit-ring orbit-ring-inner"></div>
+              <div class="orbit-ring orbit-ring-outer"></div>
               <div class="orbit-icon laptop-icon" aria-hidden="true">
                 <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="21" x2="22" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
               </div>
@@ -105,6 +191,36 @@
               </div>
               <div class="orbit-star orbit-star-1" aria-hidden="true">✦</div>
               <div class="orbit-star orbit-star-2" aria-hidden="true">✦</div>
+            </div>
+            <div class="solar-system" aria-hidden="true">
+              <div class="solar-planet sp-1" data-speed="1">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #FF6B6B, #CC3333);width:14px;height:14px;box-shadow:0 0 12px rgba(255,107,107,0.4)"></div>
+              </div>
+              <div class="solar-planet sp-2" data-speed="0.7">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #FFB347, #CC7A22);width:20px;height:20px;box-shadow:0 0 16px rgba(255,179,71,0.3)"></div>
+                <div class="sp-ring"></div>
+                <div class="sp-moon"></div>
+              </div>
+              <div class="solar-planet sp-3" data-speed="0.5">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #4FC3F7, #1565C0);width:26px;height:26px;box-shadow:0 0 20px rgba(79,195,247,0.3)"></div>
+              </div>
+              <div class="solar-planet sp-4" data-speed="0.4">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #CE93D8, #7B1FA2);width:18px;height:18px;box-shadow:0 0 14px rgba(206,147,216,0.3)"></div>
+                <div class="sp-ring"></div>
+              </div>
+              <div class="solar-planet sp-5" data-speed="0.3">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #80DEEA, #00838F);width:12px;height:12px;box-shadow:0 0 10px rgba(128,222,234,0.3)"></div>
+              </div>
+              <div class="solar-planet sp-6" data-speed="0.25">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #FFD54F, #F57F17);width:10px;height:10px;box-shadow:0 0 8px rgba(255,213,79,0.3)"></div>
+              </div>
+            </div>
+            <div class="hero-asteroids" aria-hidden="true">
+              <div class="hero-astro astro-1"></div>
+              <div class="hero-astro astro-2"></div>
+              <div class="hero-astro astro-3"></div>
+              <div class="hero-astro astro-4"></div>
+              <div class="hero-astro astro-5"></div>
             </div>
             <div class="hero-image-placeholder" role="img" aria-label="Esraa Fathallah profile photo">
               <img src="assets/profile.jpg" alt="">
@@ -193,11 +309,23 @@ I am currently a third-year student in the Faculty of Computer Science, actively
     <section class="section" id="experience" aria-label="My Experience">
       <div class="container">
         <h2 class="section-title reveal-text">My Experience</h2>
-        <div class="experience-card-wrapper reveal-scale">
-          <div class="experience-card">
+        <div class="experience-grid">
+          <div class="experience-card reveal-scale">
             <span class="exp-timeline">2026 - Present</span>
+            <div class="exp-icon-wrapper">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
             <h3 class="exp-title">Flutter Developer</h3>
             <p class="exp-description">I've taught Flutter development to new learners, helping them understand the basics and build real projects.</p>
+            <div class="exp-glowing-line"></div>
+          </div>
+          <div class="experience-card reveal-scale">
+            <span class="exp-timeline">2025 - 2026</span>
+            <div class="exp-icon-wrapper">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <h3 class="exp-title">UI/UX Designer</h3>
+            <p class="exp-description">Designed intuitive mobile interfaces with smooth user flows, clean typography, and modern design systems.</p>
             <div class="exp-glowing-line"></div>
           </div>
         </div>
@@ -402,9 +530,9 @@ I am currently a third-year student in the Faculty of Computer Science, actively
       <div class="container">
         <h2 class="section-title reveal-text">Get In Touch</h2>
         <div class="contact-container">
-          <a href="https://wa.me/201098488685" target="_blank" rel="noopener noreferrer" class="contact-card reveal-slide-left">
+          <a href="https://wa.me/201098488685" target="_blank" rel="noopener noreferrer" class="contact-card contact-whatsapp reveal-slide-left">
             <div class="contact-icon">
-              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
             </div>
             <span class="contact-btn-label">
               Message Me
