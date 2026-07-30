@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esraa Fathallah | Flutter Developer & UI/UX Designer</title>
+  <meta name="description" content="Flutter Developer with a strong eye for UI/UX. Building cross-platform apps that feel native and look stunning." />
+  <meta name="keywords" content="Flutter, Developer, UI/UX, Mobile App, Portfolio, Esraa Fathallah" />
+  <meta name="author" content="Esraa Fathallah" />
+  <meta property="og:title" content="Esraa Fathallah | Flutter Developer" />
+  <meta property="og:description" content="Flutter Developer with a strong eye for UI/UX." />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NEBULA BACKGROUND LAYERS -->
+  <div class="nebula-layer nebula-1" aria-hidden="true"></div>
+  <div class="nebula-layer nebula-2" aria-hidden="true"></div>
+  <div class="nebula-layer nebula-3" aria-hidden="true"></div>
+  <div class="galaxy-layer" aria-hidden="true"></div>
+
+  <!-- PLANET CURSOR -->
+  <div class="planet-cursor" id="planetCursor" aria-hidden="true">
+    <div class="planet-cursor-body"></div>
+    <div class="planet-cursor-orbit" id="planetOrbit"></div>
+    <div class="cursor-sparkles" id="cursorSparkles"></div>
+  </div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- SHOOTING STAR CONTAINER -->
+  <div class="shooting-stars" id="shootingStars"></div>
+
+  <!-- COSMIC RIPPLE CONTAINER -->
+  <div class="cosmic-ripple-container" id="cosmicRippleContainer"></div>
+
+  <!-- ROCKET NAVIGATION -->
+  <div class="nav-rocket" id="navRocket" aria-hidden="true">
+    <div class="rocket-body">
+      <svg width="24" height="32" viewBox="0 0 24 32" fill="none">
+        <path d="M12 0C12 0 4 10 4 18C4 24 8 28 12 32C16 28 20 24 20 18C20 10 12 0 12 0Z" fill="url(#rocketGrad)"/>
+        <circle cx="12" cy="18" r="3" fill="#0B1020" opacity="0.6"/>
+      </svg>
+      <svg width="0" height="0"><defs><linearGradient id="rocketGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D9FF"/></linearGradient></defs></svg>
+    </div>
+    <div class="rocket-exhaust" id="rocketExhaust"></div>
+  </div>
+
+  <!-- CONSTELLATION CANVAS -->
+  <canvas id="constellationCanvas" aria-hidden="true"></canvas>
+
+  <!-- GALAXY FOG -->
+  <div class="galaxy-fog" aria-hidden="true"></div>
+
+  <!-- BLACK HOLE -->
+  <div class="black-hole" aria-hidden="true">
+    <div class="black-hole-shadow"></div>
+    <div class="black-hole-disk"></div>
+    <div class="black-hole-core"></div>
+    <div class="black-hole-glow"></div>
+  </div>
+
+  <!-- FLOATING PLANETS -->
+  <div class="floating-planet planet-1" aria-hidden="true">
+    <div class="planet-ring"></div>
+  </div>
+  <div class="floating-planet planet-2" aria-hidden="true"></div>
+  <div class="floating-planet planet-3" aria-hidden="true">
+    <div class="planet-ring"></div>
+  </div>
+  <div class="floating-planet planet-4" aria-hidden="true"></div>
+  <div class="floating-planet planet-5" aria-hidden="true">
+    <div class="planet-ring"></div>
+  </div>
+
+  <!-- ASTEROIDS -->
+  <div class="asteroid asteroid-1" aria-hidden="true"></div>
+  <div class="asteroid asteroid-2" aria-hidden="true"></div>
+  <div class="asteroid asteroid-3" aria-hidden="true"></div>
+
+  <!-- SATELLITES -->
+  <div class="satellite satellite-1" aria-hidden="true">
+    <div class="satellite-body"></div>
+    <div class="satellite-panel"></div>
+  </div>
+
+  <!-- COMET CONTAINER -->
+  <div class="comet-container" id="cometContainer" aria-hidden="true"></div>
+
+  <!-- COSMIC LIGHTING OVERLAYS -->
+  <div class="cosmic-light light-top-left" aria-hidden="true"></div>
+  <div class="cosmic-light light-bottom-right" aria-hidden="true"></div>
+  <div class="cosmic-light light-center" aria-hidden="true"></div>
+
+  <!-- BACK TO TOP ROCKET -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top" title="Back to top">
+    <div class="btt-rocket">
+      <svg width="20" height="26" viewBox="0 0 24 32" fill="none">
+        <path d="M12 0C12 0 4 10 4 18C4 24 8 28 12 32C16 28 20 24 20 18C20 10 12 0 12 0Z" fill="url(#bttRocketGrad)"/>
+        <circle cx="12" cy="18" r="3" fill="#0B1020" opacity="0.6"/>
+      </svg>
+      <svg width="0" height="0"><defs><linearGradient id="bttRocketGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6C63FF"/><stop offset="100%" stop-color="#00D9FF"/></linearGradient></defs></svg>
+    </div>
+    <div class="btt-exhaust" id="bttExhaust"></div>
+  </button>
+
+  <!-- FLOATING PARTICLES BACKGROUND -->
+  <canvas id="particleCanvas"></canvas>
+
+  <!-- MAIN WRAPPER -->
+  <div class="app-wrapper">
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+      <div class="container nav-container">
+        <a href="#home" class="nav-logo" aria-label="Home">Esraa<span class="logo-dot">.</span></a>
+        <ul class="nav-links" id="navLinks" role="menubar">
+          <li role="none"><a href="#home" class="nav-link active" role="menuitem" data-nav>Home</a></li>
+          <li role="none"><a href="#about" class="nav-link" role="menuitem" data-nav>About</a></li>
+          <li role="none"><a href="#education" class="nav-link" role="menuitem" data-nav>Education</a></li>
+          <li role="none"><a href="#experience" class="nav-link" role="menuitem" data-nav>Experience</a></li>
+          <li role="none"><a href="#skills" class="nav-link" role="menuitem" data-nav>Skills</a></li>
+          <li role="none"><a href="#projects" class="nav-link" role="menuitem" data-nav>Projects</a></li>
+          <li role="none"><a href="#testimonials" class="nav-link" role="menuitem" data-nav>Testimonials</a></li>
+          <li role="none"><a href="#services" class="nav-link" role="menuitem" data-nav>Services</a></li>
+          <li role="none"><a href="#contact" class="nav-link" role="menuitem" data-nav>Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <a href="#" class="btn-download-cv" id="downloadCV" aria-label="Download CV" title="Download CV">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          </a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ==================== HOME ==================== -->
+    <section class="section hero" id="home" aria-label="Home">
+      <div class="container hero-container">
+        <div class="hero-content">
+          <p class="hero-greeting reveal-text">Hello, I'm</p>
+          <h1 class="hero-name reveal-text">Esraa Fathallah</h1>
+          <div class="hero-typing-wrapper">
+            <span class="hero-typing" id="typingText"></span>
+            <span class="typing-cursor">|</span>
+          </div>
+          <p class="hero-bio reveal-text">Flutter Developer with a strong eye for UI/UX. I enjoy building cross-platform apps that feel native and look stunning. My goal is to deliver clean, maintainable code and memorable user experiences.</p>
+          <div class="hero-buttons reveal-text">
+            <a href="#" class="btn btn-primary" id="heroDownloadCV">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download CV
+            </a>
+            <a href="#projects" class="btn btn-secondary">
+              View Projects
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+          <div class="hero-socials reveal-text">
+            <a href="https://github.com/Esraa87-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/esraa-fathallah-300b40364?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://wa.me/201098488685" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-link">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper reveal-scale">
+          <div class="hero-image-frame" id="heroFrame">
+            <div class="hero-sun-glow" aria-hidden="true"></div>
+            <div class="hero-orbit">
+              <div class="orbit-ring"></div>
+              <div class="orbit-ring orbit-ring-inner"></div>
+              <div class="orbit-ring orbit-ring-outer"></div>
+              <div class="orbit-icon laptop-icon" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="2" y1="21" x2="22" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </div>
+              <div class="orbit-icon flutter-icon" aria-hidden="true">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M14.314 0L2.3 12 6 15.7 21.684.016h-7.37zm.014 11.072l-6.6 6.6L14.3 24h7.315l-7.287-6.928 7.287-6.328-7.287-.272z"/></svg>
+              </div>
+              <div class="orbit-star orbit-star-1" aria-hidden="true">✦</div>
+              <div class="orbit-star orbit-star-2" aria-hidden="true">✦</div>
+            </div>
+            <div class="solar-system" aria-hidden="true">
+              <div class="solar-planet sp-1" data-speed="1">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #FF6B6B, #CC3333);width:14px;height:14px;box-shadow:0 0 12px rgba(255,107,107,0.4)"></div>
+              </div>
+              <div class="solar-planet sp-2" data-speed="0.7">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #FFB347, #CC7A22);width:20px;height:20px;box-shadow:0 0 16px rgba(255,179,71,0.3)"></div>
+                <div class="sp-ring"></div>
+                <div class="sp-moon"></div>
+              </div>
+              <div class="solar-planet sp-3" data-speed="0.5">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #4FC3F7, #1565C0);width:26px;height:26px;box-shadow:0 0 20px rgba(79,195,247,0.3)"></div>
+              </div>
+              <div class="solar-planet sp-4" data-speed="0.4">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #CE93D8, #7B1FA2);width:18px;height:18px;box-shadow:0 0 14px rgba(206,147,216,0.3)"></div>
+                <div class="sp-ring"></div>
+              </div>
+              <div class="solar-planet sp-5" data-speed="0.3">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #80DEEA, #00838F);width:12px;height:12px;box-shadow:0 0 10px rgba(128,222,234,0.3)"></div>
+              </div>
+              <div class="solar-planet sp-6" data-speed="0.25">
+                <div class="sp-body" style="background:radial-gradient(circle at 35% 35%, #FFD54F, #F57F17);width:10px;height:10px;box-shadow:0 0 8px rgba(255,213,79,0.3)"></div>
+              </div>
+            </div>
+            <div class="hero-asteroids" aria-hidden="true">
+              <div class="hero-astro astro-1"></div>
+              <div class="hero-astro astro-2"></div>
+              <div class="hero-astro astro-3"></div>
+              <div class="hero-astro astro-4"></div>
+              <div class="hero-astro astro-5"></div>
+            </div>
+            <div class="hero-image-placeholder" role="img" aria-label="Esraa Fathallah profile photo">
+              <img src="assets/profile.jpg" alt="">
+            </div>
+            <div class="frame-ribbon" aria-hidden="true">
+              <svg width="28" height="36" viewBox="0 0 28 36" fill="none">
+                <path d="M14 36L0 24V0L14 12L28 0V24L14 36Z" fill="#FF6B9D" opacity="0.9"/>
+                <path d="M14 30L4 22V6L14 14L24 6V22L14 30Z" fill="#FF8DB5" opacity="0.7"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT ==================== -->
+    <section class="section" id="about" aria-label="About Me">
+      <div class="container">
+        <h2 class="section-title reveal-text">About Me</h2>
+        <div class="about-container">
+          <div class="about-image-wrapper reveal-slide-left">
+            <div class="about-image-frame">
+              <div class="about-image-placeholder" role="img" aria-label="Esraa Fathallah">
+                <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                  <img src="assets/profile.jpg" alt="Esraa Fathallah">
+                </svg>
+              </div>
+              <div class="about-frame-decor" aria-hidden="true">
+                <div class="decor-dot dot-1"></div>
+                <div class="decor-dot dot-2"></div>
+                <div class="decor-dot dot-3"></div>
+              </div>
+            </div>
+          </div>
+          <div class="about-content reveal-slide-right">
+            <p class="about-bio">Flutter Developer | Mobile App Developer
+
+              I am a Flutter Developer with hands-on experience building cross-platform mobile applications for Android and iOS using Flutter and Dart. I enjoy transforming ideas into production-ready applications by applying Clean Architecture, state management, and modern software engineering practices.
+My technical expertise includes Flutter, Dart, REST APIs, Clean Architecture, Git, GitHub, and responsive UI development. I focus on writing clean, maintainable code while delivering intuitive user experiences.
+I am currently a third-year student in the Faculty of Computer Science, actively balancing academic excellence with practical software development. I'm always interested in collaborating on innovative mobile applications and exploring new opportunities.
+
+</p>
+            <div class="stats-row">
+              <div class="stat-card">
+                <span class="stat-number">1+</span>
+                <span class="stat-label">Years Experience</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">2</span>
+                <span class="stat-label">Projects Done</span>
+              </div>
+              <div class="stat-card">
+                <span class="stat-number">Flutter</span>
+                <span class="stat-unit">Developer</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EDUCATION ==================== -->
+    <section class="section" id="education" aria-label="My Education">
+      <div class="container">
+        <h2 class="section-title reveal-text">My Education</h2>
+        <div class="education-card-wrapper reveal-scale">
+          <div class="education-card">
+            <span class="edu-badge">Student</span>
+            <div class="edu-header">
+              <span class="edu-icon" aria-hidden="true">
+                <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </span>
+              <h3 class="edu-title">Faculty of Computers and Information, Zagazig University</h3>
+            </div>
+            <div class="edu-grade">
+              <span class="stars" aria-label="Grade: Excellent">★★★★★</span>
+              <span class="grade-label">Excellent</span>
+            </div>
+            <p class="edu-description">A third-year student at the Faculty of Computers and Information, passionate about technology and software development. Building a strong foundation in information systems, programming, and data management while continuously learning and applying new skills through real-world projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== EXPERIENCE ==================== -->
+    <section class="section" id="experience" aria-label="My Experience">
+      <div class="container">
+        <h2 class="section-title reveal-text">My Experience</h2>
+        <div class="experience-grid">
+          <div class="experience-card reveal-scale">
+            <span class="exp-timeline">2026 - Present</span>
+            <div class="exp-icon-wrapper">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="exp-title">Flutter Developer</h3>
+            <p class="exp-description">I've taught Flutter development to new learners, helping them understand the basics and build real projects.</p>
+            <div class="exp-glowing-line"></div>
+          </div>
+          <div class="experience-card reveal-scale">
+            <span class="exp-timeline">2025 - 2026</span>
+            <div class="exp-icon-wrapper">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <h3 class="exp-title">UI/UX Designer</h3>
+            <p class="exp-description">Designed intuitive mobile interfaces with smooth user flows, clean typography, and modern design systems.</p>
+            <div class="exp-glowing-line"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SKILLS ==================== -->
+    <section class="section" id="skills" aria-label="My Skills">
+      <div class="container">
+        <h2 class="section-title reveal-text">My Skills</h2>
+        <div class="skills-container">
+          <div class="skill-card reveal-slide-left">
+            <h3 class="skill-card-title">Programming & Concepts</h3>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Dart (OOP)</span><span class="skill-percent">70%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Data Structures</span><span class="skill-percent">80%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Problem Solving</span><span class="skill-percent">85%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Clean Code</span><span class="skill-percent">88%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+            </div>
+          </div>
+          <div class="skill-card reveal-slide-right">
+            <h3 class="skill-card-title">Flutter Development</h3>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Flutter</span><span class="skill-percent">85%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">UI/UX Design</span><span class="skill-percent">90%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-info"><span class="skill-name">Cubit</span><span class="skill-percent">78%</span></div>
+              <div class="skill-bar"><div class="skill-fill" data-width="78"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== PROJECTS ==================== -->
+    <section class="section" id="projects" aria-label="Featured Projects">
+      <div class="container">
+        <h2 class="section-title reveal-text">Featured Projects</h2>
+        <div class="projects-container">
+          <article class="project-card reveal-slide-left">
+            <div class="project-image">
+              <div class="project-image-placeholder">
+                <svg width="48" height="62" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/>
+                <img src="assets\031aa585-a603-4b71-97f5-8db5988ed6ef.png" alt="">
+                </svg>
+
+                <span>To-Do App</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">To-Do App</h3>
+              <p class="project-description">A simple and clean to-do application with task management features, including add, edit, delete, and mark tasks as complete. Built with a focus on clean code and smooth user experience.</p>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Bloc</span>
+                <span class="project-tag">Hive</span>
+              </div>
+              <a href="https://github.com/esraa3628223-dotcom/toDo" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                View on GitHub
+              </a>
+            </div>
+          </article>
+          <article class="project-card reveal-slide-right">
+            <div class="project-image">
+              <div class="project-image-placeholder">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+                <img src="assets\ddbca86b-4eb2-43d2-b2cd-dd335af066fa.png" alt="E-Commerce App">
+                </svg>
+                <span>E-Commerce App</span>
+              </div>
+            </div>
+            <div class="project-info">
+              <h3 class="project-title">E-Commerce App</h3>
+              <p class="project-description">Full-featured e-commerce application with authentication, product catalog, shopping cart, and order tracking functionality.</p>
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">API</span>
+                <span class="project-tag">Packages</span>
+              </div>
+              <a href="https://github.com/Esraa87-dev" target="_blank" rel="noopener noreferrer" class="btn btn-sm">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                View on GitHub
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TESTIMONIALS ==================== -->
+    <section class="section" id="testimonials" aria-label="Testimonials">
+      <div class="container">
+        <h2 class="section-title reveal-text">What People Say</h2>
+        <div class="testimonial-slider" id="testimonialSlider" role="region" aria-label="Testimonials slider">
+          <div class="slider-track" id="sliderTrack">
+            <div class="testimonial-card">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <p class="testi-text">"Esraa is an incredibly talented Flutter developer. Her attention to detail and clean code practices are truly impressive for someone at her level."</p>
+              <h4 class="testi-name">Ahmed Hassan</h4>
+              <span class="testi-role">Flutter Student</span>
+            </div>
+            <div class="testimonial-card">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <p class="testi-text">"Working with Esraa was a pleasure. She has a natural talent for UI/UX and always delivers pixel-perfect designs."</p>
+              <h4 class="testi-name">Mariam Khaled</h4>
+              <span class="testi-role">UI Designer</span>
+            </div>
+            <div class="testimonial-card">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <p class="testi-text">"Her problem-solving skills are outstanding. She approaches every challenge with creativity and determination."</p>
+              <h4 class="testi-name">Omar Youssef</h4>
+              <span class="testi-role">Software Engineer</span>
+            </div>
+            <div class="testimonial-card">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <p class="testi-text">"Esraa has a great understanding of Flutter and state management. She explains complex concepts in a simple, clear way."</p>
+              <h4 class="testi-name">Nour El-Din</h4>
+              <span class="testi-role">Mobile Developer</span>
+            </div>
+            <div class="testimonial-card">
+              <div class="testi-stars" aria-label="5 stars">★★★★★</div>
+              <p class="testi-text">"I was impressed by her portfolio apps. She builds with passion and it shows in every line of code she writes."</p>
+              <h4 class="testi-name">Sara Adel</h4>
+              <span class="testi-role">Tech Lead</span>
+            </div>
+          </div>
+          <div class="slider-controls">
+            <button class="slider-btn prev-btn" id="prevBtn" aria-label="Previous testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+            </button>
+            <div class="slider-dots" id="sliderDots"></div>
+            <button class="slider-btn next-btn" id="nextBtn" aria-label="Next testimonial">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== SERVICES ==================== -->
+    <section class="section" id="services" aria-label="My Services">
+      <div class="container">
+        <h2 class="section-title reveal-text">My Services</h2>
+        <div class="services-container">
+          <div class="service-card reveal-scale">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="service-title">Flutter Development</h3>
+            <p class="service-description">Building cross-platform mobile apps with clean code and smooth UI.</p>
+          </div>
+          <div class="service-card reveal-scale">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            </div>
+            <h3 class="service-title">UI/UX Design</h3>
+            <p class="service-description">Beautiful, intuitive interface design with a user-centered approach.</p>
+          </div>
+          <div class="service-card reveal-scale">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3 class="service-title">Dart Programming</h3>
+            <p class="service-description">Writing clean, efficient, maintainable Dart code.</p>
+          </div>
+          <div class="service-card reveal-scale">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            </div>
+            <h3 class="service-title">API Integration</h3>
+            <p class="service-description">Connecting apps to RESTful APIs and handling data seamlessly.</p>
+          </div>
+          <div class="service-card reveal-scale">
+            <div class="service-icon" aria-hidden="true">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+            </div>
+            <h3 class="service-title">Problem Solving</h3>
+            <p class="service-description">Strong analytical and problem-solving skills.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== CONTACT ==================== -->
+    <section class="section" id="contact" aria-label="Get In Touch">
+      <div class="container">
+        <h2 class="section-title reveal-text">Get In Touch</h2>
+        <div class="contact-container">
+          <a href="https://wa.me/201098488685" target="_blank" rel="noopener noreferrer" class="contact-card contact-whatsapp reveal-slide-left">
+            <div class="contact-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </div>
+            <span class="contact-btn-label">
+              Message Me
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+          <a href="mailto:esraa.mohamed.developer@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-card reveal-slide-right">
+            <div class="contact-icon">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <span class="contact-btn-label">
+              Send Email
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer" role="contentinfo">
+      <div class="container footer-container">
+        <div class="footer-socials">
+          <a href="https://github.com/Esraa87-dev" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="social-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/esraa-fathallah-300b40364?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="social-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://wa.me/201098488685" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="social-link">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+        </div>
+        <p class="footer-message">Thanks for stopping by.<br/>I hope you enjoyed exploring my work as much as I enjoyed building it.</p>
+        <p class="footer-copyright">&copy; 2026 Esraa Fathallah. Crafted with Flutter vibes.</p>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
